@@ -75,11 +75,21 @@ public class HelperManager {
     }
 
 
-    public void send(){
+    public void send(int action){
         Intent intent = new Intent("com.robot.brain");
-        intent.putExtra("data",1);
+        intent.putExtra("data",action);
         mContext.sendBroadcast(intent);
     }
+
+    public void next(){
+        send(1);
+    }
+
+    public void endQ(){
+        send(0);
+    }
+
+
 
 
 
