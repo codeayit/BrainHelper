@@ -3,8 +3,6 @@ package com.robot.brainhelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.robot.brainhelperlib.HelperManager;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
