@@ -33,10 +33,12 @@ public class BrainHelper {
 //        return instance;
 //    }
 
-    public BrainHelper() {
+    public BrainHelper(Context mContext) {
+        this.mContext = mContext;
         actions = new ArrayList<>();
-//        listeners = new ArrayList<>();
     }
+
+
 
 //    public void addListener(OnActionListener listener){
 //        if (!listeners.contains(listener)){
@@ -45,8 +47,7 @@ public class BrainHelper {
 //    }
 
 
-    public void regist(Context context, String... as){
-        mContext = context;
+    public void regist( String... as){
         if (as!=null || as.length >0){
             actions.addAll(Arrays.asList(as));
         }
