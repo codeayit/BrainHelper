@@ -52,6 +52,8 @@ public class BrainHelper {
             actions.addAll(Arrays.asList(as));
         }
 
+        actions.add("com.robot.brain.end");
+
         if (actions.size()>0){
             IntentFilter filter = new IntentFilter();
             for (String action:actions){
