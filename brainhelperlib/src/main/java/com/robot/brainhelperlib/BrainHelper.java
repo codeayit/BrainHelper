@@ -62,18 +62,14 @@ public class BrainHelper {
             mContext.registerReceiver(receiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-
-                    if ("com.robot.brain.end".equals(intent.getAction())){
-                        onActionListener.onFinish(intent);
-                    }else{
-                        if (onActionListener.listenerActions()==null){
-                            onActionListener.onAction(intent);
+                    if (onActionListener!=null){
+                        if ("com.robot.brain.end".equals(intent.getAction())){
+                            onActionListener.onFinish(intent);
                         }else{
-                            if (onActionListener.listenerActions().contains(intent.getAction())){
-                                onActionListener.onAction(intent);
-                            }
+                            onActionListener.onAction(intent);
                         }
                     }
+
 
 //                    for (OnActionListener listener:listeners){
 //                        if ("com.robot.brain.end".equals(intent.getAction())){
@@ -118,7 +114,6 @@ public class BrainHelper {
     public interface OnActionListener{
         void onAction(Intent intent);
         void onFinish(Intent intent);
-        List<String> listenerActions();
     }
 
 
