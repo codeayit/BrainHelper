@@ -103,10 +103,38 @@ public class BrainHelper {
         mContext.sendBroadcast(intent);
     }
 
+
+    /**
+     * 释放mic
+     */
+    public void releaseMic(){
+        send(4);
+    }
+
+    /**
+     * 处于语音收听状态
+     */
+    public void asr(){
+        send(3);
+    }
+
+    /**
+     * 处于唤醒状态
+     */
+    public void wake(){
+        send(2);
+    }
+
+    /**
+     * 下一个队列
+     */
     public void next(){
         send(1);
     }
 
+    /**
+     * 结束队列
+     */
     public void endQ(){
         send(0);
     }
