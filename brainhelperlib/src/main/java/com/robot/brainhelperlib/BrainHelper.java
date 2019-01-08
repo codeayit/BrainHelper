@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class BrainHelper {
     private List<String> actions;
@@ -39,7 +40,6 @@ public class BrainHelper {
     }
 
 
-
 //    public void addListener(OnActionListener listener){
 //        if (!listeners.contains(listener)){
 //            listeners.add(listener);
@@ -47,25 +47,25 @@ public class BrainHelper {
 //    }
 
 
-    public void regist( String... as){
-        if (as!=null || as.length >0){
+    public void regist(String... as) {
+        if (as != null || as.length > 0) {
             actions.addAll(Arrays.asList(as));
         }
 
         actions.add("com.robot.brain.end");
 
-        if (actions.size()>0){
+        if (actions.size() > 0) {
             IntentFilter filter = new IntentFilter();
-            for (String action:actions){
+            for (String action : actions) {
                 filter.addAction(action);
             }
             mContext.registerReceiver(receiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    if (onActionListener!=null){
-                        if ("com.robot.brain.end".equals(intent.getAction())){
+                    if (onActionListener != null) {
+                        if ("com.robot.brain.end".equals(intent.getAction())) {
                             onActionListener.onFinish(intent);
-                        }else{
+                        } else {
                             onActionListener.onAction(intent);
                         }
                     }
@@ -85,65 +85,73 @@ public class BrainHelper {
 //                        }
 //                    }
                 }
-            },filter);
+            }, filter);
         }
     }
 
-    public void unRegist(){
-        if (receiver!=null){
+    public void unRegist() {
+        if (receiver != null) {
             mContext.unregisterReceiver(receiver);
             mContext = null;
         }
     }
 
 
-    public void send(int action){
+    public void send(int action) {
         Intent intent = new Intent("com.robot.brain");
-        intent.putExtra("data",action);
+        intent.putExtra("data", action);
         mContext.sendBroadcast(intent);
     }
 
+    public void sendText(String action, Map<String, String> data) {
+        Intent intent = new Intent(action);
+        if (data != null)
+            for (Map.Entry<String, String> entry : data.entrySet()) {
+                intent.putExtra(entry.getKey(), entry.getValue());
+            }
+        mContext.sendBroadcast(intent);
+    }
 
     /**
      * 释放mic
      */
-    public void releaseMic(){
+    public void releaseMic() {
         send(4);
     }
 
     /**
      * 处于语音收听状态
      */
-    public void asr(){
+    public void asr() {
         send(3);
     }
 
     /**
      * 处于唤醒状态
      */
-    public void wake(){
+    public void wake() {
         send(2);
     }
 
     /**
      * 下一个队列
      */
-    public void next(){
+    public void next() {
         send(1);
     }
 
     /**
      * 结束队列
      */
-    public void endQ(){
+    public void endQ() {
         send(0);
     }
 
-    public interface OnActionListener{
+    public interface OnActionListener {
         void onAction(Intent intent);
+
         void onFinish(Intent intent);
     }
-
 
 
 }
