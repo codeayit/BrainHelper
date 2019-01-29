@@ -97,7 +97,7 @@ public class BrainHelper {
     }
 
 
-    public void send(int action) {
+    public void send(String action) {
         Intent intent = new Intent("com.robot.brain");
         intent.putExtra("data", action);
         mContext.sendBroadcast(intent);
@@ -116,36 +116,54 @@ public class BrainHelper {
      * 释放mic
      */
     public void releaseMic() {
-        send(4);
+        send("releaseMic");
     }
 
     /**
      * 处于语音收听状态
      */
-    public void asr() {
-        send(3);
+    public void startAsr() {
+        send("startAsr");
+    }
+
+    public void stopAsr(){
+        send("stopAsr");
     }
 
     /**
      * 处于唤醒状态
      */
-    public void wake() {
-        send(2);
+    public void startWake(){
+        send("startWake");
     }
+
+    public void stopWake(){
+        send("stopWake");
+    }
+
+    public void startTouch(){
+        send("startTouch");
+    }
+
+    public void stopTouch(){
+        send("stopTouch");
+    }
+
 
     /**
      * 下一个队列
      */
-    public void next() {
-        send(1);
+    public void nextQ() {
+        send("nextQ");
     }
 
     /**
      * 结束队列
      */
     public void endQ() {
-        send(0);
+        send("endQ");
     }
+
 
     public interface OnActionListener {
         void onAction(Intent intent);
