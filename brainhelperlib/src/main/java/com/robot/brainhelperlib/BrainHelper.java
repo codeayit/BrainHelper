@@ -195,6 +195,10 @@ public class BrainHelper {
         send("nextQ");
     }
 
+    public void nextQ(Map<String, String> extras){
+        sendText("nextQ",extras);
+    }
+
 
 
     /**
