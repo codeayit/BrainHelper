@@ -111,16 +111,16 @@ public class BrainHelper {
         mContext.sendBroadcast(intent);
     }
 
-//    public void sendText(String action, Map<String, String> data) {
-//        Intent intent = new Intent(action);
-//        if (data != null)
-//            for (Map.Entry<String, String> entry : data.entrySet()) {
-//                intent.putExtra(entry.getKey(), entry.getValue());
-//            }
-//        mContext.sendBroadcast(intent);
-//    }
-
     public void sendText(String action, Map<String, String> data) {
+        Intent intent = new Intent(action);
+        if (data != null)
+            for (Map.Entry<String, String> entry : data.entrySet()) {
+                intent.putExtra(entry.getKey(), entry.getValue());
+            }
+        mContext.sendBroadcast(intent);
+    }
+
+    public void sendBrainText(String action, Map<String, String> data) {
         Intent intent = new Intent("com.robot.brain");
         intent.putExtra("data",action);
         if (data != null)
