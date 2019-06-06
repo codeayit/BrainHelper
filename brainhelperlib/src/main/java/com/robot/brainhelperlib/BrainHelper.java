@@ -137,7 +137,7 @@ public class BrainHelper {
         Map<String,String> data = new HashMap<>();
         data.put("tts_text",text);
         data.put("tts_token",ttsToken);
-        sendText("tts_start",data);
+        sendBrainText("tts_start",data);
         if (onTtsListener!=null){
             onTtsListener.onStart();
         }
@@ -196,7 +196,7 @@ public class BrainHelper {
     }
 
     public void nextQ(Map<String, String> extras){
-        sendText("nextQ",extras);
+        sendBrainText("nextQ",extras);
     }
 
 
